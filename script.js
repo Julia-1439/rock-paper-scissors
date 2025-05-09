@@ -52,6 +52,38 @@ function playRound(computerChoice, humanChoice){
         ++humanScore;
         console.log(`You win! ${humanChoice} beats ${computerChoice}`);
     }
-
-    return;
 }
+
+/**
+FUNCTION play 5 rounds of rock paper scissors
+PASS IN nothing
+PASSES OUT nothing
+
+PRINT a welcome message announcing a best 3 out of 5 set to be played
+
+SET computerScore to 0
+SET humanScore to 0
+SET numGames to 0
+
+FOR numGames 0 to 4 DO
+    SET humanChoice to user input by CALLING getHumanChoice
+    SET computerChoice by CALLING getComputerChoice
+    SET gameOutcome by CALLING determineWinner
+    IF determineWinner is "Tie" THEN
+        CONTINUE
+    ELSE IF determineWinner is "Computer" THEN
+        INCREMENT computerScore
+    ELSE 
+        INCREMENT humanScore
+    ENDIF
+ENDFOR
+
+IF computerScore is the same as humanScore THEN
+    PRINT message indicating a tie
+ELSE IF computerScore > humanScore THEN
+    PRINT message indicating computer won
+ELSE
+    PRINT message indicating human won
+ENDIF
+
+ */
