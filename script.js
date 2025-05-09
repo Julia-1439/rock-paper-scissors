@@ -5,13 +5,13 @@ function getComputerChoice() {
     const seed = Math.random();
     let computerChoice;
     if (seed < 0.33) {
-        computerChoice = "Rock";
+        computerChoice = "rock";
     }
     else if (0.33 <= seed && seed < 0.66) {
-        computerChoice = "Paper";
+        computerChoice = "paper";
     } 
     else {
-        computerChoice = "Scissors";
+        computerChoice = "scissors";
     }
     return computerChoice;
 }
