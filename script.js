@@ -33,7 +33,7 @@ IF computerChoice is the same as humanChoice THEN
 	PASS OUT nothing
 ENDIF
 
-SET computerWins to false
+DECLARE computerWins as variable
 
 CASE computerChoice OF
     computerChoice is "rock": 
@@ -49,11 +49,13 @@ ENDCASE
 
 IF computerWins THEN
     INCREMENT computerScore
+    PRINT message saying you lost
 ELSE
     INCREMENT humanScore
+    PRINT message saying you won
 ENDIF
 
-PRINT message of the winner
+
 PASS OUT nothing
 
 ENDFUNCTION
