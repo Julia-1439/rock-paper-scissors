@@ -12,3 +12,8 @@ function getComputerChoice() {
     }
     return computerChoice;
 }
+
+function getHumanChoice() {
+    const userChoice = prompt("Hello User, what is your choice?");
+    return userChoice;
+}
