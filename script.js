@@ -1,6 +1,7 @@
-let humanScore = 0;
-let computerScore = 0;
-
+/**
+ * 
+ * @returns {string} computer's choice of "rock", "paper", or "scissors"
+ */
 function getComputerChoice() {
     const seed = Math.random();
     let computerChoice;
@@ -16,17 +17,27 @@ function getComputerChoice() {
     return computerChoice;
 }
 
+/**
+ * Obtains user input for rock paper scissors. Note that no input validation is done for the scope of this project
+ * @returns {string} user input
+ */
 function getHumanChoice() {
     return prompt("Hello User, what is your choice?");
 }
 
-function playRound(computerChoice, humanChoice){
+/**
+ * 
+ * @param {string} computerChoice 
+ * @param {string} humanChoice 
+ * @returns {string} the winner: either "Computer" or "Human", or "Tie" in event of a tie
+ */
+function determineWinner(computerChoice, humanChoice){
     humanChoice = humanChoice.toLowerCase();
     
     // Terminate early in case of a tie
     if (computerChoice === humanChoice){
         console.log(`It's a tie! You both chose ${computerChoice}.`);
-        return;
+        return "Tie";
     }
 
     // Determine winner
@@ -43,14 +54,14 @@ function playRound(computerChoice, humanChoice){
             break;
     }
 
-    // Increment appropriate score and Print message
+    // Print appropriate message and return the winner
     if (computerWins) {
-        ++computerScore;
         console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        return "Computer";
     }
     else {
-        ++humanScore;
         console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        return "Human";
     }
 }
 
