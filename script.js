@@ -101,3 +101,5 @@ function playGame() {
     }
     console.log("Thank you for playing.");
 }
+
+playGame();
