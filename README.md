@@ -1,0 +1,3 @@
+# rock-paper-scissors
+
+This is my solution to the third project in The Odin Project's 'Foundations' course in web development. Here, I utilize basic concepts of Javascript - functions, variables, conditionals, and scope - to create a rock-paper-scissors game played in a browser console. I also practiced writing pseudocode for the major functions of the project - `playGame` and `determineWinner` - which can be found in the commit history. 
