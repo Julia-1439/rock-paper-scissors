@@ -27,8 +27,8 @@ function getHumanChoice() {
 
 /**
  * 
- * @param {string} computerChoice 
- * @param {string} humanChoice 
+ * @param {string} computerChoice one of "rock", "paper", or "scissors"
+ * @param {string} humanChoice one of "rock", "paper", or "scissors"
  * @returns {string} the winner: either "Computer" or "Human", or "Tie" in event of a tie
  */
 function determineWinner(computerChoice, humanChoice){
