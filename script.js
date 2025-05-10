@@ -63,13 +63,7 @@ function determineWinner(computerChoice, humanChoice){
     // Return the winner
     return (computerWins) ? "Computer" : "Human";
 }
-    // Print appropriate message and return the winner
-    if (computerWins) {
-        return "Computer";
-    }
-    else {
-        return "Human";
-    }
+
 /**
  * 
  */
