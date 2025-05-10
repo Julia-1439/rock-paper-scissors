@@ -3,26 +3,20 @@
  * @returns {string} computer's choice of "rock", "paper", or "scissors"
  */
 function getComputerChoice() {
-    const seed = Math.random();
+    const seed = Math.floor(Math.random() * 3);
     let computerChoice;
-    if (seed < 0.33) {
-        computerChoice = "rock";
-    }
-    else if (0.33 <= seed && seed < 0.66) {
-        computerChoice = "paper";
-    } 
-    else {
-        computerChoice = "scissors";
+    switch (seed) {
+        case 0: 
+            computerChoice = "rock"; 
+            break;
+        case 1: 
+            computerChoice = "paper";
+            break;
+        case 2: 
+            computerChoice = "scissors";
+            break;
     }
     return computerChoice;
-
-    /**
-     * An alternative to generating a random choice is to multiply Math.random()
-     * by the number of choices, and using a switch statement to index into a
-     * choice. Cool!
-     * 
-     * const seed = Math.floor(Math.random() * 3)
-     */
 }
 
 /**
