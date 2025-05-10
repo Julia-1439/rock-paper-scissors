@@ -15,6 +15,14 @@ function getComputerChoice() {
         computerChoice = "scissors";
     }
     return computerChoice;
+
+    /**
+     * An alternative to generating a random choice is to multiply Math.random()
+     * by the number of choices, and using a switch statement to index into a
+     * choice. Cool!
+     * 
+     * const seed = Math.floor(Math.random() * 3)
+     */
 }
 
 /**
@@ -55,7 +63,13 @@ function determineWinner(computerChoice, humanChoice){
     // Return the winner
     return (computerWins) ? "Computer" : "Human";
 }
-
+    // Print appropriate message and return the winner
+    if (computerWins) {
+        return "Computer";
+    }
+    else {
+        return "Human";
+    }
 /**
  * 
  */
