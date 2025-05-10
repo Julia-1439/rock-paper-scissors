@@ -20,8 +20,10 @@ function getComputerChoice() {
 }
 
 /**
- * Obtains user input for rock paper scissors. Note that no input validation is done for the scope of this project
- * @returns {string} user input
+ * Obtains user input for rock paper scissors. Note that no input validation is 
+ * done for the scope of this project.
+ * @returns {string} user input of "rock", "paper", or "scissors" not case-
+ * sensitive. (eg, "rOcK" is allowed)
  */
 function getHumanChoice() {
     return prompt("Hello User, what is your choice?");
@@ -29,45 +31,49 @@ function getHumanChoice() {
 
 /**
  * 
- * @param {string} computerChoice one of "rock", "paper", or "scissors"
- * @param {string} humanChoice one of "rock", "paper", or "scissors"
- * @returns {string} the winner: either "Computer" or "Human", or "Tie" in event of a tie
+ * @returns {string} "Computer" or "Human" as winner, or "Tie" in event of a tie
  */
-function determineWinner(computerChoice, humanChoice){
+function determineWinnerOrTie(computerChoice, humanChoice){
     
-    // Terminate early in case of a tie
     if (computerChoice === humanChoice){
         return "Tie";
     }
 
-    // Determine winner
     let isComputerWinner;
     switch (computerChoice){
         case "rock":
-            isComputerWinner = humanChoice === "scissors";
+            isComputerWinner = (humanChoice === "scissors");
             break;
         case "paper":
-            isComputerWinner = humanChoice === "rock";
+            isComputerWinner = (humanChoice === "rock");
             break;
         case "scissors":
-            isComputerWinner = humanChoice === "paper";
+            isComputerWinner = (humanChoice === "paper");
             break;
     }
 
-    // Return the winner
     return (isComputerWinner) ? "Computer" : "Human";
 }
 
 /**
+ * Play 5 games of rock paper scissors in the console
+ * Some design choices deviated from TOP: 
  * 
+ * Most notably, to increase function modularity: I decreased the scope of the 
+ * playRound function (renamed to determineWinnerOrTie) to only determining the 
+ * outcome of the game rather than doing that + outputting to console + keeping 
+ * score altogether. These scopes were moved to playGame, and subsequently 
+ * playRound was appropriately renamed to determineWinnerOrTie. 
  */
 function playGame() {
-    console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a winner will be determined at the end. Good luck!");
+    console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a \
+        winner will be determined at the end. Good luck!");
     
     let computerScore = 0;
     let humanScore = 0;
+    const numGames = 5; 
 
-    for (let numGames = 0; numGames < 5; ++numGames){
+    for (let n = 0; n < numGames; ++n){
         let computerChoice = getComputerChoice();
         let humanChoice = getHumanChoice().toLowerCase();
 
@@ -85,8 +91,8 @@ function playGame() {
         }
     }
 
-    // Print outcome of set of games
-    console.log(`The final score is: Computer ${computerScore} | ${humanScore} User`)
+    console.log(`The final score is: Computer ${computerScore} | ${humanScore} \
+        User`)
     if (computerScore === humanScore) {
         console.log("It is a tie!");
     }
