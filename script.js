@@ -47,21 +47,21 @@ function determineWinner(computerChoice, humanChoice){
     }
 
     // Determine winner
-    let computerWins;
+    let isComputerWinner;
     switch (computerChoice){
         case "rock":
-            computerWins = humanChoice === "scissors";
+            isComputerWinner = humanChoice === "scissors";
             break;
         case "paper":
-            computerWins = humanChoice === "rock";
+            isComputerWinner = humanChoice === "rock";
             break;
         case "scissors":
-            computerWins = humanChoice === "paper";
+            isComputerWinner = humanChoice === "paper";
             break;
     }
 
     // Return the winner
-    return (computerWins) ? "Computer" : "Human";
+    return (isComputerWinner) ? "Computer" : "Human";
 }
 
 /**
