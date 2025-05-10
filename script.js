@@ -32,11 +32,9 @@ function getHumanChoice() {
  * @returns {string} the winner: either "Computer" or "Human", or "Tie" in event of a tie
  */
 function determineWinner(computerChoice, humanChoice){
-    humanChoice = humanChoice.toLowerCase();
     
     // Terminate early in case of a tie
     if (computerChoice === humanChoice){
-        console.log(`It's a tie! You both chose ${computerChoice}.`);
         return "Tie";
     }
 
@@ -56,14 +54,54 @@ function determineWinner(computerChoice, humanChoice){
 
     // Print appropriate message and return the winner
     if (computerWins) {
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         return "Computer";
     }
     else {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
         return "Human";
     }
 }
+
+/**
+ * 
+ */
+function playGame() {
+    console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a winner will be determined at the end. Good luck!");
+    
+    let computerScore = 0;
+    let humanScore = 0;
+
+    for (let numGames = 0; numGames < 5; ++numGames){
+        let computerChoice = getComputerChoice();
+        let humanChoice = getHumanChoice().toLowerCase();
+
+        let winner = determineWinner(computerChoice, humanChoice);
+        if (winner === "Tie") {
+            console.log(`It's a tie! You both chose ${computerChoice}.`);
+        }
+        else if (winner === "Computer") { 
+            console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+            ++computerScore;
+        }
+        else {
+            console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+            ++humanScore;
+        }
+    }
+
+    // Print outcome of set of games
+    console.log(`The final score is: Computer ${computerScore} | ${humanScore} User`)
+    if (computerScore === humanScore) {
+        console.log("It is a tie!");
+    }
+    else if (computerScore > humanScore) {
+        console.log("The computer won!");
+    }
+    else {
+        console.log("You won!");
+    }
+    console.log("Thank you for playing.");
+}
+
 
 /**
 FUNCTION play 5 rounds of rock paper scissors
