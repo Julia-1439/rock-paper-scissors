@@ -77,7 +77,7 @@ function playGame() {
         let computerChoice = getComputerChoice();
         let humanChoice = getHumanChoice().toLowerCase();
 
-        let winner = determineWinner(computerChoice, humanChoice);
+        let winner = determineWinnerOrTie(computerChoice, humanChoice);
         if (winner === "Tie") {
             console.log(`It's a tie! You both chose ${computerChoice}.`);
         }
