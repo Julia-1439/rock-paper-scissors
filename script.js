@@ -91,8 +91,8 @@ function playGame() {
         }
     }
 
-    console.log(`The final score is: Computer ${computerScore} | ${humanScore} \
-        User`)
+    console.log(
+        `The final score is: Computer ${computerScore} | ${humanScore} User`)
     if (computerScore === humanScore) {
         console.log("It is a tie!");
     }
