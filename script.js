@@ -1,3 +1,7 @@
+let computerScore = 0;
+let humanScore = 0;
+const MAX_POINTS = 5; 
+
 /**
  * 
  * @returns {string} computer's choice of "rock", "paper", or "scissors"
@@ -29,32 +33,30 @@ function getHumanChoice() {
     return prompt("Hello User, what is your choice?");
 }
 
-/**
- * 
- * @returns {string} "Computer" or "Human" as winner, or "Tie" in event of a tie
- */
-function playRound(computerChoice, humanChoice){
-    
-    let outcome;
+function playRound(humanChoice){
+    const computerChoice = getComputerChoice();
+    let winner; 
+
+    // Determine winner of the game: "Tie", "Computer", "Human"
     switch (computerChoice){
         case humanChoice: 
-            outcome = "Tie";
+            winner = "Tie";
             break;
         case "rock":
-            outcome = (humanChoice === "scissors") ? "Computer" : "Human";
+            winner = (humanChoice === "scissors") ? "Computer" : "Human";
             break;
         case "paper":
-            outcome = (humanChoice === "rock") ? "Computer" : "Human";
+            winner = (humanChoice === "rock") ? "Computer" : "Human";
             break;
         case "scissors":
-            outcome = (humanChoice === "paper") ? "Computer" : "Human";
+            winner = (humanChoice === "paper") ? "Computer" : "Human";
             break;
     }
 
-    if (outcome === "Tie") {
+    if (winner === "Tie") {
         console.log(`It's a tie! You both chose ${computerChoice}.`);
     }
-    else if (outcome === "Computer") { 
+    else if (winner === "Computer") { 
         console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
         ++computerScore;
     }
@@ -65,32 +67,13 @@ function playRound(computerChoice, humanChoice){
 }
 
 /**
- * Play 5 games of rock paper scissors in the console
- * Some design choices deviated from TOP: 
- * 
- * Most notably, to increase function modularity: I decreased the scope of the 
- * playRound function (renamed to determineWinnerOrTie) to only determining the 
- * outcome of the game rather than doing that + outputting to console + keeping 
- * score altogether. These scopes were moved to playGame, and subsequently 
- * playRound was appropriately renamed to determineWinnerOrTie. 
+ * Only is called when one of computerScore or humanScore reaches 5
+ * Assumptions: computerScore is not equal to humanScore once called
  */
-function playGame() {
-    console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a \
-        winner will be determined at the end. Good luck!");
-    
-
-
-    let computerChoice = getComputerChoice();
-    let humanChoice = getHumanChoice().toLowerCase();
-
-    playRound();
-    
+function printFinalResults() {
     console.log(
         `The final score is: Computer ${computerScore} | ${humanScore} User`)
-    if (computerScore === humanScore) {
-        console.log("It is a tie!");
-    }
-    else if (computerScore > humanScore) {
+    if (computerScore > humanScore) {
         console.log("The computer won!");
     }
     else {
@@ -99,9 +82,21 @@ function playGame() {
     console.log("Thank you for playing.");
 }
 
-let computerScore = 0;
-let humanScore = 0;
-const numGames = 5; 
+console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a \
+    winner will be determined at the end. Good luck!");
+
+const choiceButtons = document.querySelectorAll("#choices>button")
+choiceButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        const humanChoice = button.textContent;
+        playRound(humanChoice);
+        if(Math.max(computerScore, humanScore) === MAX_POINTS) {
+            printFinalResults();
+        }
+    })
+})
 
 
-playGame();
+
+
+
