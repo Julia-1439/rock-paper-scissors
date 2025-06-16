@@ -1,6 +1,23 @@
+const MAX_SCORE = 5; 
+
 let computerScore = 0;
 let humanScore = 0;
-const MAX_POINTS = 5; 
+
+const currRoundResult = document.querySelector("#curr-round-result");
+const runningScore = document.querySelector("#running-score");
+const finalResults = document.querySelector("#final-results");
+
+const choiceButtons = document.querySelectorAll("#choices-container > button")
+choiceButtons.forEach((button) => {
+    button.addEventListener("click", (e) => {
+        const humanChoice = button.textContent;
+        playRound(humanChoice);
+        if(Math.max(computerScore, humanScore) === MAX_SCORE) {
+            printFinalResults();
+        }
+    })
+})
+
 
 /**
  * 
@@ -23,21 +40,11 @@ function getComputerChoice() {
     return computerChoice;
 }
 
-/**
- * Obtains user input for rock paper scissors. Note that no input validation is 
- * done for the scope of this project.
- * @returns {string} user input of "rock", "paper", or "scissors" not case-
- * sensitive. (eg, "rOcK" is allowed)
- */
-function getHumanChoice() {
-    return prompt("Hello User, what is your choice?");
-}
-
 function playRound(humanChoice){
-    const computerChoice = getComputerChoice();
     let winner; 
 
     // Determine winner of the game: "Tie", "Computer", "Human"
+    const computerChoice = getComputerChoice();
     switch (computerChoice){
         case humanChoice: 
             winner = "Tie";
@@ -54,49 +61,34 @@ function playRound(humanChoice){
     }
 
     if (winner === "Tie") {
-        console.log(`It's a tie! You both chose ${computerChoice}.`);
+        currRoundResult.textContent = `It's a tie! You both chose ${computerChoice}.`;
     }
     else if (winner === "Computer") { 
-        console.log(`You lose! ${computerChoice} beats ${humanChoice}`);
+        currRoundResult.textContent = `You lose! ${computerChoice} beats ${humanChoice}`;
         ++computerScore;
     }
     else {
-        console.log(`You win! ${humanChoice} beats ${computerChoice}`);
+        currRoundResult.textContent = `You win! ${humanChoice} beats ${computerChoice}`;
         ++humanScore;
     }
+
+    runningScore.textContent = `The current score is: Computer ${computerScore}\
+ | ${humanScore} User`;
 }
 
 /**
- * Only is called when one of computerScore or humanScore reaches 5
- * Assumptions: computerScore is not equal to humanScore once called
+ * Only called when one of computerScore or humanScore reaches 5
  */
 function printFinalResults() {
-    console.log(
-        `The final score is: Computer ${computerScore} | ${humanScore} User`)
-    if (computerScore > humanScore) {
-        console.log("The computer won!");
-    }
-    else {
-        console.log("You won!");
-    }
-    console.log("Thank you for playing.");
+    const messagesContainer = document.querySelector("#messages-container");
+    messagesContainer.removeChild(currRoundResult);
+    messagesContainer.removeChild(runningScore);
+    finalResults.textContent = [
+        `The final score is: Computer ${computerScore} | ${humanScore} User`,
+        (computerScore > humanScore) ? "The computer won!" : "You won!",
+        "Thank you for playing."
+    ].join("\n"); 
 }
-
-console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a \
-    winner will be determined at the end. Good luck!");
-
-const choiceButtons = document.querySelectorAll("#choices-container > button")
-choiceButtons.forEach((button) => {
-    button.addEventListener("click", (e) => {
-        const humanChoice = button.textContent;
-        playRound(humanChoice);
-        if(Math.max(computerScore, humanScore) === MAX_POINTS) {
-            printFinalResults();
-        }
-    })
-})
-
-
 
 
 
