@@ -85,7 +85,7 @@ function printFinalResults() {
 console.log("Welcome to Rock Paper Scissors! 5 sets will be played, and a \
     winner will be determined at the end. Good luck!");
 
-const choiceButtons = document.querySelectorAll("#choices>button")
+const choiceButtons = document.querySelectorAll("#choices-container > button")
 choiceButtons.forEach((button) => {
     button.addEventListener("click", (e) => {
         const humanChoice = button.textContent;
